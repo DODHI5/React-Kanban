@@ -4,8 +4,8 @@ module.exports = {
   development: {
     client: "pg",
     connection: {
-      host: "127.0.0.1",
-      user: "kanban",
+      host: "localhost",
+      user: "kanban_user",
       password: "password",
       database: "kanban",
       charset: "utf8"
