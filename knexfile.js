@@ -1,11 +1,11 @@
 // Update with your config settings.
-
+const path = require(`path`);
 module.exports = {
   development: {
     client: "pg",
     connection: {
       host: "localhost",
-      user: "kanban_user",
+      user: "kanban",
       password: "password",
       database: "kanban",
       charset: "utf8"
