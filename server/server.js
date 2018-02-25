@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const bodyParser = require("body-parser");
 const path = require("path");
+const cardRoutes = require("./routes/card");
 
 app.use(express.static("public"));
 app.use(
@@ -13,8 +14,12 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get("/api", (req, res) => {
-  console.log("smoke-test");
+app.use("/api/cards", cardRoutes);
+
+app.get("/*", (req, res) => {
+  var options = {
+    root: __dirname + "/public"
+  };
 });
 
 app.listen(PORT, err => {
