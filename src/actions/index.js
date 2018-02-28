@@ -3,6 +3,7 @@ import "whatwg-fetch";
 const KANBAN_API = "/api/kanban";
 
 export const LOAD_CARDS = "LOAD_CARDS";
+export const DELETE_CARDS = "DELETE_CARDS";
 
 export const loadCards = data => {
   return dispatch => {
@@ -26,5 +27,15 @@ export const loadCards = data => {
           cards: []
         });
       });
+  };
+};
+
+export const deleteCards = data => {
+  return dispatch => {
+    console.log("deleteTest");
+    return KANBAN_API.deleteCards(data).then(() => {
+      console.log(`Deleted ${data.id}`);
+      dispatch(deleteCards(data));
+    });
   };
 };

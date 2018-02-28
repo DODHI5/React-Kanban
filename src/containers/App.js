@@ -6,6 +6,7 @@ import "./App.css";
 import { loadCards } from "../actions";
 
 import KanbanList from "../components/KanbanList";
+import KanbanListItem from "../components/KanbanListItem";
 //import from
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
     super(props);
 
     this.findCardByTitle = this.findCardByTitle.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
   componentDidMount() {
     this.props.loadCards();
@@ -26,6 +28,9 @@ class App extends Component {
       return foundCard;
     }
   }
+  deleteCard(event) {
+    this.props.actions.deleteCard(this.state.cards);
+  }
 
   render() {
     return (
@@ -37,11 +42,6 @@ class App extends Component {
         <p className="App-intro">What To Do</p>
         <KanbanList cards={this.props.cards} />
         <br />
-
-        {/* <CardList
-          card={this.props.cards}
-          cardClickHandler={this.cardClickHandler}
-        /> */}
       </div>
     );
   }

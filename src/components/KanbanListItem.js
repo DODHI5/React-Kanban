@@ -15,7 +15,14 @@ const CardListItem = props => {
         </div>
         <div className="attribute">
           <span>Status: </span>
-          {props.status}
+          <select>
+            <option value="" disabled selected>
+              Select your option
+            </option>
+            <option value="Q">Queue</option>
+            <option value="IP">In Progress</option>
+            <option value="D">Done</option>
+          </select>
         </div>
         <div className="attribute">
           <span>Created By:</span>
@@ -25,6 +32,18 @@ const CardListItem = props => {
           <span>Assigned To:</span>
           {props.assigned_to}
         </div>
+        <form action="/:id" method="put">
+          <button type="button" onclick="{}">
+            Edit
+          </button>
+        </form>
+        <form action="/:id" method="delete">
+          <button type="button" onclick={this.deleteCard}>
+            Delete
+          </button>
+        </form>
+        <br />
+        <br />
       </div>
     </li>
   );
