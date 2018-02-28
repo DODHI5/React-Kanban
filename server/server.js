@@ -14,7 +14,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use("/api/cards", cardRoutes);
+app.use("/api/kanban", cardRoutes);
 
 app.get("/*", (req, res) => {
   var options = {

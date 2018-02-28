@@ -1,33 +1,26 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import logo from "../logo.svg";
-import "../App.css";
-import { ActiveCard } from "../components/KanbanCards";
-import { loadCards } from "../actions/index";
+import "./App.css";
+import { loadCards } from "../actions";
+
+import KanbanList from "../components/KanbanList";
 //import from
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.cardClickHandler = this.cardClickHandler.bind(this);
     this.findCardByTitle = this.findCardByTitle.bind(this);
   }
   componentDidMount() {
     this.props.loadCards();
   }
-  cardClickHandler(event) {
-    const cardTitle = event.currentTarget.dataset.cardTitle;
-    if (cardTitle) {
-      const foundCard = this.findCardByTitle(cardTitle);
-      if (foundCard) {
-        this.props.setActiveCard(foundCard);
-      }
-    }
-  }
 
   findCardByTitle(title) {
     const foundCard = this.props.cards.find(card => {
-      return planet.name === name;
+      return card.title === title;
     });
     if (foundCard) {
       return foundCard;
@@ -41,12 +34,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Kanban</h1>
         </header>
-        <ActiveCard card={this.props.activeCard} />
         <p className="App-intro">What To Do</p>
-        <CardList
-          planet={this.props.cards}
+        <KanbanList cards={this.props.cards} />
+        <br />
+
+        {/* <CardList
+          card={this.props.cards}
           cardClickHandler={this.cardClickHandler}
-        />
+        /> */}
       </div>
     );
   }
@@ -54,18 +49,14 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    cards: state.cards.cards,
-    activeCard: state.cards.activeCard
+    cards: state.cards.cards
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    loadCards: () => {
-      dispatch(loadCards());
-    },
-    setActiveCard: card => {
-      dispatch(setActiveCard(card));
+    loadCards: data => {
+      dispatch(loadCards(data));
     }
   };
 };

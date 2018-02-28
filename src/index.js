@@ -9,7 +9,7 @@ import "./index.css";
 import App from "./containers/App";
 import registerServiceWorker from "./registerServiceWorker";
 
-const boundCompose = compose.bind(null, applyMiddleware());
+const boundCompose = compose.bind(null, applyMiddleware(thunk));
 
 const store = createStore(
   rootReducer,
@@ -22,6 +22,7 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
+
   document.getElementById("root")
 );
 registerServiceWorker();

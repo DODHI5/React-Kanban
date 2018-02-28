@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import cardsReducer from "./planetsReducers";
+import cardsReducer from "./cardsReducer";
 
 export default combineReducers({
-  cards: planetReducer
+  cards: cardsReducer
 });
